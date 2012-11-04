@@ -1,0 +1,321 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <!-- * For the title :
+        - on Index page, change "[Title with keywords]" by your own title with keywords
+      * For meta description :
+        - on Index page, put your own description for your Tumblr
+        - on Permalink pages, {MetaDescription} will be use. -->
+    <title>
+      {block:IndexPage}
+        [Title with keywords] | {Title}
+      {/block:IndexPage}
+      {block:PermalinkPage}
+        {block:PostTitle}
+          {PostTitle} | {Title}
+        {block:PostTitle}
+      {/block:PermalinkPage}
+    </title>
+    <link rel="shortcut icon" href="{Favicon}">
+    <link rel="alternate" type="application/rss+xml" href="{RSS}">
+    {block:Description}
+        <meta name="description" content="
+        {block:IndexPage}
+          [My description]
+        {/block:IndexPage}
+        {block:PermalinkPage}
+          {MetaDescription}
+        {/block:PermalinkPage}
+        {block:Pagination}
+          ({CurrentPage})
+        {/block:Pagination}" />
+    {/block:Description}
+    <meta name="robots" content="{block:SearchPage}noindex,follow{/block:SearchPage}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- Facebook properties -->
+    <meta property="og:type" content="blog" />
+    <meta property="og:site_name" content="{Title}" />
+    <meta property="og:title" content="{block:IndexPage}Ma description pour FB{/block:IndexPage} {Block:PermalinkPage}{Description}{/block:PermalinkPage}" />
+    <meta property="og:url" content="{block:IndexPage}L’URL du Tumblr{/block:IndexPage}{block:PermalinkPage}{Permalink}{/block:PermalinkPage}" />
+    <!-- Add the following lines to theme's html code right before HEAD -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+<script src="http://static.tumblr.com/fpifyru/VCxlv9xwi/writecapture.js"></script>
+<script src="http://static.tumblr.com/fpifyru/AKFlv9zdu/embedgist.js"></script>
+
+    <link rel="stylesheet" href="http://sammarkiewi.cz/blog/style.css">
+  </head>
+    <body>
+      <header role="banner">
+        {block:IndexPage}
+          <h1>{Title}</h1>
+        {/block:IndexPage}
+        {block:PermalinkPage}
+          <p class="title-h1">{Title}</p>
+        {/block:PermalinkPage}
+
+        {block:Description}
+            <p id="description">{Description}</p>
+        {/block:Description}
+      </header>
+      <nav class="menu" role="navigation">
+        <ul class="group">
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/archive">Archives</a>
+          </li>
+          {block:SubmissionsEnabled}
+            <li><a href="/submit">{SubmitLabel}</a></li>
+          {/block:SubmissionsEnabled}
+          {block:AskEnabled}
+            <li><a href="/ask">{AskLabel}</a></li>
+          {/block:AskEnabled}
+        </ul>
+      </nav>
+
+      {block:Posts}
+        <article role="main">
+          <section class="{PostType}">
+            {block:Text}
+              <header>
+                {block:Title}
+                  {block:IndexPage}
+                    <h2><a href="{Permalink}">{Title}</a></h2>
+                  {/block:IndexPage}
+                  {block:PermalinkPage}
+                    <h1>{Title}</h1>
+                  {/block:PermalinkPage}
+                {/block:Title}
+              </header>
+              {Body}
+              <!-- If you break your text, #go after permalink allow you to don't duplicate permalink -->
+              {block:More}
+                <a href="{Permalink}#go">Read more</a>
+              {/block:More}
+            {/block:Text}
+
+            {block:Photo}
+              <header>
+                {block:IndexPage}
+                  <h2><a href="{Permalink}">{PhotoAlt}</a></h2>
+                {/block:IndexPage}
+                {block:PermalinkPage}
+                  <h1>{PhotoAlt}</h1>
+                {/block:PermalinkPage}
+              </header>
+
+              <img src="{PhotoURL-500}" alt="{PhotoAlt}"/>
+              {block:HighRes}
+                <a href="{PhotoURL-HighRes}">Full View</a>
+              {/block:HighRes}
+
+              {block:Caption}
+                  <div class="caption">{Caption}</div>
+              {/block:Caption}
+            {/block:Photo}
+
+            {block:Photoset}
+              {Photoset-500}
+
+              {block:Caption}
+                <div class="caption">{Caption}</div>
+              {/block:Caption}
+            {/block:Photoset}
+
+            {block:Quote}
+              {block:IndexPage}
+                <h2><a href="{Permalink}">"{Quote}"</a></h2>
+              {/block:IndexPage}
+              {block:PermalinkPage}
+                <h1>"{Quote}"</h1>
+              {/block:PermalinkPage}
+
+              {block:Source}
+                  <p class="source">{Source}</p>
+              {/block:Source}
+            {/block:Quote}
+
+            {block:Link}
+              <header>
+                 {block:IndexPage}
+                   <h2><a href="{Permalink}">{Name}</a></h2>
+                 {/block:IndexPage}
+                 {block:PermalinkPage}
+                   <h1>{Name}</h1>
+                 {/block:PermalinkPage}
+              </header>
+              <a href="{URL}" class="link" {Target}>{URL}</a>
+
+              {block:Description}
+                  <div class="description">{Description}</div>
+              {/block:Description}
+            {/block:Link}
+
+            {block:Chat}
+              <header>
+                {block:Title}
+                  {block:IndexPage}
+                    <h2><a href="{Permalink}">{Title}</a></h2>
+                  {/block:IndexPage}
+                  {block:PermalinkPage}
+                    <h1>{Title}</h1>
+                  {/block:PermalinkPage}
+                {/block:Title}
+              </header>
+
+              <ul class="chat">
+                {block:Lines}
+                  <li class="{Alt} user_{UserNumber}">
+                    {block:Label}
+                        <span class="label">{Label}</span>
+                    {/block:Label}
+
+                    {Line}
+                  </li>
+                {/block:Lines}
+              </ul>
+            {/block:Chat}
+
+            {block:Video}
+              {Video-500}
+
+              {block:Caption}
+                  <div class="caption">{Caption}</div>
+              {/block:Caption}
+              {block:IndexPage}
+                <a href="{Permalink}">Permalink</a>
+              {/block:IndexPage}
+            {/block:Video}
+
+            {block:Audio}
+              <header>
+                {block:IndexPage}
+                  <h2>
+                    <a href="{Permalink}">
+
+                      {block:TrackName}
+                        {TrackName}
+                      {/block:TrackName}
+
+                      {block:Artist}
+                        by {Artist}
+                      {/block:Artist}
+
+                      {block:Album}
+                        on {Album}
+                      {/block:Album}
+                    </a>
+                  </h2>
+                {/block:IndexPage}
+                {block:PermalinkPage}
+                  <h1>
+                    {block:TrackName}
+                      {TrackName}
+                    {/block:TrackName}
+
+                    {block:Artist}
+                      by {Artist}
+                    {/block:Artist}
+
+                    {block:Album}
+                      on {Album}
+                    {/block:Album}
+                  </h1>
+                {/block:PermalinkPage}
+              </header>
+
+              {block:AlbumArt}
+                <img src="{AlbumArtURL}" />
+              {/block:AlbumArt}
+
+              <ul class="infoTrack">
+                <li>
+                  {block:Album}
+                    <strong>Album :</strong> {Album}
+                  {/block:Album}
+                </li>
+
+                <li>
+                  {block:Artist}
+                    <strong>Artist :</strong> {Artist}
+                  {/block:Artist}
+                </li>
+
+                <li>
+                  {block:TrackName}
+                    <strong>Track :</strong> {TrackName}
+                  {/block:TrackName}
+                </li>
+                <li>
+                  {AudioPlayerGrey}
+                </li>
+              </ul>
+
+              {block:Caption}
+                <div class="caption">
+                  {Caption}
+                </div>
+              {/block:Caption}
+
+            {/block:Audio}
+          </section>
+          <aside role="complementary">
+              {block:Date}
+                <p class="time">Published {TimeAgo}</p>
+              {/block:Date}
+
+              {block:HasTags}
+                <div class="tags">
+                  {block:Tags}
+                        <a href="{TagURL}">{Tag}</a>
+                  {/block:Tags}
+                </div>
+              {/block:HasTags}
+
+              <div class="noteCount">
+                {block:NoteCount}
+                    <a href="{Permalink}#notes">{NoteCountWithLabel}</a>,
+                {/block:NoteCount}
+                    <a class="dsq-comment-count" href="{Permalink}#disqus_thread">Comments</a>
+              </div>
+
+              <div class="notes">
+                {block:PostNotes}
+                  {PostNotes}
+                {/block:PostNotes}
+              </div>
+          </aside>
+        </article>
+      {/block:Posts}
+
+      <nav class="pagination">
+        {block:Pagination}
+          <ul class="group">
+            <li>
+              {block:PreviousPage}
+                <a href="{PreviousPage}">&#171; Previous</a>
+              {/block:PreviousPage}
+            </li>
+            <li id="jump_pagination">
+              {block:JumpPagination length="5"}
+                {block:CurrentPage}
+                    <span class="current_page">{PageNumber}</span>
+                {/block:CurrentPage}
+
+                {block:JumpPage}
+                    <a class="jump_page" href="{URL}">{PageNumber}</a>
+                {/block:JumpPage}
+              {/block:JumpPagination}
+            </li>
+            <li>
+              {block:NextPage}
+                  <a href="{NextPage}">Next &#187;</a>
+              {/block:NextPage}
+            </li>
+          </ul>
+        {/block:Pagination}
+      </nav>
+
+    </body>
+</html>
