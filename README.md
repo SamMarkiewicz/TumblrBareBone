@@ -15,16 +15,16 @@ I decided to create a barebone structure to help building a theme.
 ###Tumblr Barebone content
 
 **Tumblr BareBone** contents :
-+HTML5 structure with *ARIA* roles
-+All Tumblr's basic features
-+All meta's required
-+jQuery 1.7.0
-+And some others useful things...
++  HTML5 structure with *ARIA* roles
++  All Tumblr's basic features
++  All meta's required
++  jQuery 1.7.0
++  And some others useful things...
 
 ###Contributors
 
 This was built with the help of [Antoine Brisset](http://www.antoine-brisset.com/)  
-If you want to contribute to the project and make it evolve, you're welcome on board !
+If you want to contribute to the project and make it evolve, **you're welcome on board !**
 
 
 
