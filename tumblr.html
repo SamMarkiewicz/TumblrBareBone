@@ -38,14 +38,15 @@
     <meta property="og:title" content="{block:IndexPage}Ma description pour FB{/block:IndexPage} {Block:PermalinkPage}{Description}{/block:PermalinkPage}" />
     <meta property="og:url" content="{block:IndexPage}L’URL du Tumblr{/block:IndexPage}{block:PermalinkPage}{Permalink}{/block:PermalinkPage}" />
     <!-- Add the following lines to theme's html code right before HEAD -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
-<script src="http://static.tumblr.com/fpifyru/VCxlv9xwi/writecapture.js"></script>
-<script src="http://static.tumblr.com/fpifyru/AKFlv9zdu/embedgist.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+    <script src="http://static.tumblr.com/fpifyru/VCxlv9xwi/writecapture.js"></script>
+    <script src="http://static.tumblr.com/fpifyru/AKFlv9zdu/embedgist.js"></script>
 
-    <link rel="stylesheet" href="http://sammarkiewi.cz/blog/style.css">
+    <link rel="stylesheet" href="[your-stylesheet].css">
   </head>
     <body>
       <header role="banner">
+        <!-- Blog title is h1 on homepage and so post title is on permalink one -->
         {block:IndexPage}
           <h1>{Title}</h1>
         {/block:IndexPage}
@@ -54,11 +55,11 @@
         {/block:PermalinkPage}
 
         {block:Description}
-            <p id="description">{Description}</p>
+            <p class="blog-description">{Description}</p>
         {/block:Description}
       </header>
       <nav class="menu" role="navigation">
-        <ul class="group">
+        <ul>
           <li>
             <a href="/">Home</a>
           </li>
@@ -76,9 +77,11 @@
 
       {block:Posts}
         <article role="main">
+          <!-- PostType used on class to have a independant control on each type -->
           <section class="{PostType}">
             {block:Text}
               <header>
+                <!-- As in the header, allow you to have a semantic structure. H2 on home and h1 on permmalink pages -->
                 {block:Title}
                   {block:IndexPage}
                     <h2><a href="{Permalink}">{Title}</a></h2>
@@ -91,12 +94,13 @@
               {Body}
               <!-- If you break your text, #go after permalink allow you to don't duplicate permalink -->
               {block:More}
-                <a href="{Permalink}#go">Read more</a>
+                <a href="{Permalink}#go" class="read-more">Read more</a>
               {/block:More}
             {/block:Text}
 
             {block:Photo}
               <header>
+                <!-- Creates a title for photo using img Alt, plus semantic display -->
                 {block:IndexPage}
                   <h2><a href="{Permalink}">{PhotoAlt}</a></h2>
                 {/block:IndexPage}
@@ -124,6 +128,7 @@
             {/block:Photoset}
 
             {block:Quote}
+              <!-- Quote is a title - You can style it differently by using the PostType class -->
               {block:IndexPage}
                 <h2><a href="{Permalink}">"{Quote}"</a></h2>
               {/block:IndexPage}
@@ -138,6 +143,7 @@
 
             {block:Link}
               <header>
+                <!-- Name is used for heading tag -->
                  {block:IndexPage}
                    <h2><a href="{Permalink}">{Name}</a></h2>
                  {/block:IndexPage}
@@ -178,8 +184,8 @@
             {/block:Chat}
 
             {block:Video}
+              <!-- A solution is still needed for video headings -->
               {Video-500}
-
               {block:Caption}
                   <div class="caption">{Caption}</div>
               {/block:Caption}
@@ -191,6 +197,7 @@
             {block:Audio}
               <header>
                 {block:IndexPage}
+                  <!-- Title include TrackName, Artist and album plus semantic display -->
                   <h2>
                     <a href="{Permalink}">
 
@@ -225,9 +232,13 @@
                 {/block:PermalinkPage}
               </header>
 
+              <!-- Album art display -->
+
               {block:AlbumArt}
                 <img src="{AlbumArtURL}" />
               {/block:AlbumArt}
+
+              <!-- Allows you to display all tracks informations in a list, and includes the player -->
 
               <ul class="infoTrack">
                 <li>
@@ -252,6 +263,8 @@
                 </li>
               </ul>
 
+              <!-- If you need to make a music review or a comment, you can add it easily -->
+
               {block:Caption}
                 <div class="caption">
                   {Caption}
@@ -260,38 +273,42 @@
 
             {/block:Audio}
           </section>
+          <!-- All extra infos are displayed in an aside container -->
           <aside role="complementary">
-              {block:Date}
-                <p class="time">Published {TimeAgo}</p>
-              {/block:Date}
+            {block:Date}
+              <p>Published :</p>
+              <!-- Use of HTML5 time tag for date -->
+              <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}">{DayOfWeek} {DayOfWeek} {Year}</time>
+            {/block:Date}
 
-              {block:HasTags}
-                <div class="tags">
-                  {block:Tags}
-                        <a href="{TagURL}">{Tag}</a>
-                  {/block:Tags}
-                </div>
-              {/block:HasTags}
-
-              <div class="noteCount">
-                {block:NoteCount}
-                    <a href="{Permalink}#notes">{NoteCountWithLabel}</a>,
-                {/block:NoteCount}
-                    <a class="dsq-comment-count" href="{Permalink}#disqus_thread">Comments</a>
+            {block:HasTags}
+              <div class="tags">
+                {block:Tags}
+                  <a href="{TagURL}">{Tag}</a>
+                {/block:Tags}
               </div>
+            {/block:HasTags}
 
-              <div class="notes">
-                {block:PostNotes}
-                  {PostNotes}
-                {/block:PostNotes}
-              </div>
+            <div class="noteCount">
+              {block:NoteCount}
+                <a href="{Permalink}#notes">{NoteCountWithLabel}</a>,
+              {/block:NoteCount}
+                <a class="dsq-comment-count" href="{Permalink}#disqus_thread">Comments</a>
+            </div>
+
+            <div class="notes">
+              {block:PostNotes}
+                {PostNotes}
+              {/block:PostNotes}
+            </div>
           </aside>
         </article>
       {/block:Posts}
 
-      <nav class="pagination">
+      <!-- Allows you to display a proper pagination -->
+      <nav class="pagination" role="navigation">
         {block:Pagination}
-          <ul class="group">
+          <ul>
             <li>
               {block:PreviousPage}
                 <a href="{PreviousPage}">&#171; Previous</a>
@@ -316,6 +333,10 @@
           </ul>
         {/block:Pagination}
       </nav>
+
+      <footer>
+        <p>{Title} a Tumblr by {PostAuthorName} - {CopyrightYears}</p>
+      </footer>
 
     </body>
 </html>
