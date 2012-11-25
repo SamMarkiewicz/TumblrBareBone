@@ -58,7 +58,7 @@
             <p class="blog-description">{Description}</p>
         {/block:Description}
       </header>
-      <nav class="menu" role="navigation">
+      <nav role="navigation">
         <ul>
           <li>
             <a href="/">Home</a>
@@ -109,21 +109,22 @@
                 {/block:PermalinkPage}
               </header>
 
-              <img src="{PhotoURL-500}" alt="{PhotoAlt}"/>
+              <figure>
+                <img src="{PhotoURL-500}" alt="{PhotoAlt}"/>
+                {block:Caption}
+                  <figcaption>{Caption}</figcaption>
+                {/block:Caption}
+              </figure>
               {block:HighRes}
                 <a href="{PhotoURL-HighRes}">Full View</a>
-              {/block:HighRes}
-
-              {block:Caption}
-                  <div class="caption">{Caption}</div>
-              {/block:Caption}
+              {/block:HighRes}            
             {/block:Photo}
 
             {block:Photoset}
               {Photoset-500}
 
               {block:Caption}
-                <div class="caption">{Caption}</div>
+                <div>{Caption}</div>
               {/block:Caption}
             {/block:Photoset}
 
@@ -154,7 +155,7 @@
               <a href="{URL}" class="link" {Target}>{URL}</a>
 
               {block:Description}
-                  <div class="description">{Description}</div>
+                  <div>{Description}</div>
               {/block:Description}
             {/block:Link}
 
@@ -187,7 +188,7 @@
               <!-- A solution is still needed for video headings -->
               {Video-500}
               {block:Caption}
-                  <div class="caption">{Caption}</div>
+                  <div>{Caption}</div>
               {/block:Caption}
               {block:IndexPage}
                 <a href="{Permalink}">Permalink</a>
@@ -235,7 +236,9 @@
               <!-- Album art display -->
 
               {block:AlbumArt}
-                <img src="{AlbumArtURL}" />
+                <figure>
+                  <img src="{AlbumArtURL}" />
+                </figure>
               {/block:AlbumArt}
 
               <!-- Allows you to display all tracks informations in a list, and includes the player -->
@@ -266,7 +269,7 @@
               <!-- If you need to make a music review or a comment, you can add it easily -->
 
               {block:Caption}
-                <div class="caption">
+                <div>
                   {Caption}
                 </div>
               {/block:Caption}
@@ -282,11 +285,13 @@
             {/block:Date}
 
             {block:HasTags}
-              <div class="tags">
+              <ul class="tags">
                 {block:Tags}
-                  <a href="{TagURL}">{Tag}</a>
+                  <li>
+                    <a href="{TagURL}">{Tag}</a>
+                  </li>   
                 {/block:Tags}
-              </div>
+              </ul>
             {/block:HasTags}
 
             <div class="noteCount">
@@ -306,7 +311,7 @@
       {/block:Posts}
 
       <!-- Allows you to display a proper pagination -->
-      <nav class="pagination" role="navigation">
+      <nav class="pagination">
         {block:Pagination}
           <ul>
             <li>
