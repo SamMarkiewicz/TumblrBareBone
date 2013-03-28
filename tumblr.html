@@ -35,7 +35,7 @@
     <!-- Facebook properties -->
     <meta property="og:type" content="blog" />
     <meta property="og:site_name" content="{Title}" />
-    <meta property="og:title" content="{block:IndexPage}Your description for FB{/block:IndexPage} {Block:PermalinkPage}{Description}{/block:PermalinkPage}" />
+    <meta property="og:title" content="{block:IndexPage}Your description for FB{/block:IndexPage} {block:PostSummary}{PostSummary}{/block:PostSummary}" />
     <meta property="og:url" content="{block:IndexPage}Tumblr's URL{/block:IndexPage}{block:PermalinkPage}{Permalink}{/block:PermalinkPage}" />
 
     <link rel="stylesheet" href="[your-stylesheet].css">
@@ -47,11 +47,11 @@
           <h1>{Title}</h1>
         {/block:IndexPage}
         {block:PermalinkPage}
-          <p class="title-h1">{Title}</p>
+          <p class="m-title--main">{Title}</p>
         {/block:PermalinkPage}
 
         {block:Description}
-            <p class="blog-description">{Description}</p>
+            <p class="m-box--blog-description">{Description}</p>
         {/block:Description}
       </header>
       <nav role="navigation">
@@ -90,7 +90,7 @@
               {Body}
               <!-- If you break your text, #go after permalink allow you to don't duplicate permalink -->
               {block:More}
-                <a href="{Permalink}#go" class="read-more">Read more</a>
+                <a href="{Permalink}#go" class="m-link--read-more">Read more</a>
               {/block:More}
             {/block:Text}
 
@@ -134,7 +134,7 @@
               {/block:PermalinkPage}
 
               {block:Source}
-                  <p class="source">{Source}</p>
+                  <p class="m-box-quote--source">{Source}</p>
               {/block:Source}
             {/block:Quote}
 
@@ -148,7 +148,7 @@
                    <h1>{Name}</h1>
                  {/block:PermalinkPage}
               </header>
-              <a href="{URL}" class="link" {Target}>{URL}</a>
+              <a href="{URL}" class="m-box-link--url-link" {Target}>{URL}</a>
 
               {block:Description}
                   <div>{Description}</div>
@@ -167,11 +167,11 @@
                 {/block:Title}
               </header>
 
-              <ul class="chat">
+              <ul class="m-box-chat--list">
                 {block:Lines}
                   <li class="{Alt} user_{UserNumber}">
                     {block:Label}
-                        <span class="label">{Label}</span>
+                        <span>{Label}</span>
                     {/block:Label}
 
                     {Line}
@@ -239,7 +239,7 @@
 
               <!-- Allows you to display all tracks informations in a list, and includes the player -->
 
-              <ul class="infoTrack">
+              <ul class="m-box-music--info-track">
                 <li>
                   {block:Album}
                     <strong>Album :</strong> {Album}
@@ -281,7 +281,7 @@
             {/block:Date}
 
             {block:HasTags}
-              <ul class="tags">
+              <ul class="m-box-aside--tags-list">
                 {block:Tags}
                   <li>
                     <a href="{TagURL}">{Tag}</a>
@@ -290,14 +290,14 @@
               </ul>
             {/block:HasTags}
 
-            <div class="noteCount">
+            <div class="m-box-aside--note-count">
               {block:NoteCount}
                 <a href="{Permalink}#notes">{NoteCountWithLabel}</a>,
               {/block:NoteCount}
                 <a class="dsq-comment-count" href="{Permalink}#disqus_thread">Comments</a>
             </div>
 
-            <div class="notes">
+            <div class="m-box-aside--post-notes">
               {block:PostNotes}
                 {PostNotes}
               {/block:PostNotes}
@@ -307,7 +307,7 @@
       {/block:Posts}
 
       <!-- Allows you to display a proper pagination -->
-      <nav class="pagination">
+      <nav class="m-box-pagination">
         {block:Pagination}
           <ul>
             <li>
@@ -315,14 +315,14 @@
                 <a href="{PreviousPage}">&#171; Previous</a>
               {/block:PreviousPage}
             </li>
-            <li id="jump_pagination">
+            <li class="m-box-pagination--jump">
               {block:JumpPagination length="5"}
                 {block:CurrentPage}
-                    <span class="current_page">{PageNumber}</span>
+                    <span class="m-box-pagination--current">{PageNumber}</span>
                 {/block:CurrentPage}
 
                 {block:JumpPage}
-                    <a class="jump_page" href="{URL}">{PageNumber}</a>
+                    <a class="m-box-pagination--jump-link" href="{URL}">{PageNumber}</a>
                 {/block:JumpPage}
               {/block:JumpPagination}
             </li>
