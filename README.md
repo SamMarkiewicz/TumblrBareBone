@@ -1,3 +1,5 @@
+![Logo Tumblr Barebone](http://sammarkiewi.cz/images/barebone-logo.png)
+
 Tumblr Barebone
 ====================
 
